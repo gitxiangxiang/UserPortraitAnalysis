@@ -54,7 +54,9 @@ def word_cut_by_jieba(sentences):
     :param sentences:
     :return:
     """
+
     words = []
     for sentence in sentences:
+        
         words.append(jieba.analyse.extract_tags(sentence))
     return words

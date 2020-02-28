@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from python.web.python.page_mapping import page_mapping
+from python.web.page_mapping import page_mapping
 
 app = Flask(__name__)
 

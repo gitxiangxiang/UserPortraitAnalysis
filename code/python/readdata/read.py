@@ -21,9 +21,14 @@ def read_data_from_excel(bookName, sheetName):
     # 获取行列数
     rowNum = sheet.max_row
     colNum = sheet.max_column
-
+    if rowNum <= 1:
+        return [[]]
     sheetContent = sheet[2:rowNum]
-    for i in sheetContent[0:10]:
+    if colNum > 10:
+        # 最多只输出十条
+        colNum = 10
+    print("打印前十条投诉建议信息")
+    for i in sheetContent[0:colNum]:
         for j in i:
             print(j.value, end=' ')
         print()

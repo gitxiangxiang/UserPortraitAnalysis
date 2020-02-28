@@ -6,4 +6,4 @@ def page_mapping(app):
 
 
 def to_index():
-    return render_template("../index.html")
+    return render_template("index.html")
