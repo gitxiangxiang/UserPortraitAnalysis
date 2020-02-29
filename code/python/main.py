@@ -6,7 +6,7 @@ from gensim import corpora, models, similarities
 
 if __name__ == "__main__":
     # excel 路径
-    bookName = r"D:\文档\毕业设计数据\个人诉求.xlsx"
+    bookName = r"..\..\数据\个人诉求.xlsx"
     # 表单名
     sheetName = "第五人"
     # 读取Excel
