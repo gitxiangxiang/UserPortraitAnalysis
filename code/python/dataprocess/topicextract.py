@@ -13,3 +13,8 @@ topic_list = lda.print_topics(10)
 print("10个主题的单词分布为：\n")
 for topic in topic_list:
     print(topic)
+
+"""
+plt.rcParams['font.sans-serif']=['SimHei']
+plt.rcParams['axes.unicode_minus']=False  # 这里设置字体，防止中文乱码
+"""

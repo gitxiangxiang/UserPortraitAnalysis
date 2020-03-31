@@ -10,7 +10,7 @@ if __name__ == "__main__":
     # 表单名
     sheetName = "第五人"
     # 读取Excel
-    data = read.read_data_from_excel(bookName, sheetName)
+    data = read.read_data_from_excel(bookName, sheetName)[1:]
     # 提取投诉的主要内容
     documents = [x[12].value for x in data]
     # 分词
@@ -34,5 +34,5 @@ if __name__ == "__main__":
     text5 = '请政府尽快落实关于疫情的防治工作'
     testData = wordcut.word_cut_by_jieba([text5, ])
     other_corpus = [dictionary.doc2bow(text) for text in testData]
-    ndarray = lda[other_corpus[0]]
-    print(ndarray)
+    result = lda[other_corpus[0]]
+    print(result)
