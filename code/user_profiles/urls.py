@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.urls import path
 from .service import TestService
-from . import views
+from .views import view
 
 app_name = "user_profiles"
 urlpatterns = [
-    path('tests/', views.StationListView.as_view()),
-    path('', views.index, name='index'),
-    path('charts/', views.charts),
-    path('save/', views.crud_mongo_test),
+    path('tests/', view.StationListView.as_view()),
+    path('', view.index, name='index'),
+    path('charts/', view.charts),
+    path('save/', view.save_excel),
     path('test/', TestService.TestPersonalAppealDao.test_gdocf2),
     path('test/<str:field_name>/', TestService.TestPersonalAppealDao.test_gdocf)
 
