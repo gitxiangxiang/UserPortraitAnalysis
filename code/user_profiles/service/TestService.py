@@ -12,7 +12,7 @@ class TestPersonalAppealDao:
         """
         测试URL模式是否生效
         :param request:
-        :param field_name: 
+        :param field_name:
         :return:
         """
         print(PersonalAppealDao.PersonalAppealDao.get_dist_cert_field(field_name))

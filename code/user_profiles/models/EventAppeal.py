@@ -1,9 +1,11 @@
-from user_profiles.models.Appeal import Appeal
-from django.db import models
+import mongoengine
+from . import Appeal
 
 
-class EventAppeal(Appeal):
+class EventAppeal(Appeal.Appeal):
     """
     事件诉求类
     """
-    event_name = models.CharField(max_length=255)
+
+    # 诉求类型
+    appeal_type = mongoengine.StringField(default='事件诉求')

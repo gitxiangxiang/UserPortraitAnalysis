@@ -1,15 +1,12 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-from .models.PersonalAppeal_mongo import PersonalAppeal
+from .models.PersonalAppeal import PersonalAppeal
 from rest_framework_mongoengine import generics
 from .models.Serializers import PersonalAppealSerializer
 import json
 from .dao import PersonalAppealDao
 # 本应用视图的公共前缀
 view_prefix = ""
-
-
-
 
 
 def index(request):
@@ -21,9 +18,6 @@ def charts(request):
 
 
 def crud_mongo_test(request):
-    pa = PersonalAppeal()
-    pa.name = 'sxp'
-    pa.age = 23
     PersonalAppealDao.PersonalAppealDao.upload_personal_appeal(r'D:\program\python\PyCharm\UserPortraitAnalysis\数据\个人诉求.xlsx', '第五人')
     pas = PersonalAppeal.objects.all()
     return HttpResponse('上传成功')

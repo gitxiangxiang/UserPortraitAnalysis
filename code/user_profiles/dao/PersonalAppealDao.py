@@ -1,5 +1,5 @@
-from user_profiles.models.PersonalAppeal_mongo import PersonalAppeal
-from user_profiles.models.Appeal import Appeal
+from user_profiles.models.PersonalAppeal import PersonalAppeal
+from user_profiles.models.Appeal_Abandoned import Appeal
 from python.readdata import read
 from user_profiles.util.AdapterForReadingExcel import AdapterForReadingExcel
 

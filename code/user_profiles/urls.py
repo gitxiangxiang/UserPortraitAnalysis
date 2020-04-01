@@ -22,7 +22,7 @@ urlpatterns = [
     path('tests/', views.StationListView.as_view()),
     path('', views.index, name='index'),
     path('charts/', views.charts),
-    path('hello/', views.crud_mongo_test),
+    path('save/', views.crud_mongo_test),
     path('test/', TestService.TestPersonalAppealDao.test_gdocf2),
     path('test/<str:field_name>/', TestService.TestPersonalAppealDao.test_gdocf)
 

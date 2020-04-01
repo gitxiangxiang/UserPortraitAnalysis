@@ -3,19 +3,19 @@ class AdapterForReadingExcel:
                       '受理员工号': 'acceptor_no',
                       '受理员': 'acceptor_name',
                       '来电人': 'raise_name',
-                      '一级分类': 'classification',
-                      '二级分类': 'classification',
-                      '三级分类': 'classification',
-                      '四级分类': 'classification',
-                      '五级分类': 'classification',
+                      '一级分类': 'first_classification',
+                      '二级分类': 'second_classification',
+                      '三级分类': 'third_classification',
+                      '四级分类': 'forth_classification',
+                      '五级分类': 'fifth_classification',
                       '紧急程度': 'urgent_level',
                       '来电类别': 'raise_category',
                       '受理渠道': 'raise_channel',
                       '主要内容': 'content',
                       '受理时间': 'raise_time',
-                      '回复备注': 'NULL',
-                      '办理情况': 'NULL',
-                      '被催办单ID': 'NULL',
+                      '回复备注': 'respond_note',
+                      '办理情况': 'transact_condition',
+                      '被催办单ID': 'urged_id',
                       '受理备注': 'notes',
                       '工单状态': 'status',
                       '受理类型': 'receive_category',
@@ -85,8 +85,8 @@ class AdapterForReadingExcel:
         for i in range(length):
             th = table_head[i].value
             if th in AdapterForReadingExcel.personal_field.keys() and AdapterForReadingExcel.personal_field[th] != 'NULL':
-                # if th in AdapterForReadingExcel.need_special_handle.keys():
-                #     AdapterForReadingExcel.special_handle()
+                if th in AdapterForReadingExcel.need_special_handle.keys():
+                    AdapterForReadingExcel.special_handle()
                 # else:
                 #     j = 0
                 #     for dic in dic_list:
