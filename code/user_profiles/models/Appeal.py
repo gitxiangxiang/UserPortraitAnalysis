@@ -17,6 +17,8 @@ class Appeal(mongoengine.Document):
     acceptor_name = mongoengine.StringField()
     # 来电人
     raise_name = mongoengine.StringField()
+    # 来电人ID
+    appeallor_id = mongoengine.ObjectIdField()
     # 一级分类
     first_classification = mongoengine.StringField()
     # 二级分类

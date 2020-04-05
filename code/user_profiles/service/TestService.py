@@ -15,8 +15,11 @@ class TestPersonalAppealDao:
         :param field_name:
         :return:
         """
-        print(PersonalAppealDao.PersonalAppealDao.get_dist_cert_field(field_name))
-        return HttpResponse(PersonalAppealDao.PersonalAppealDao.get_dist_cert_field(field_name).__str__())
+
+        maps = PersonalAppealDao.PersonalAppealDao.get_dist_cert_field(field_name)
+        respond = JsonResponse(maps)
+        respond['Access-Control-Allow-Origin'] = '*'
+        return respond
 
     @staticmethod
     def test_gdocf2(request):
