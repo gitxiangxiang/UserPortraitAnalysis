@@ -14,20 +14,6 @@ def index(request):
     return render(request, "index.html")
 
 
-def charts(request):
-    return render(request, "pages/charts/chartjs.html")
-
-
-def save_excel(request):
-    path = os.path.join(settings.BASE_DIR, 'excel', '')
-    book_name = '个人诉求.xlsx'
-    sheet_name = '第五人'
-    if PersistentService.persistent_excel(path, book_name, sheet_name):
-        return HttpResponse('上传成功')
-    else:
-        return HttpResponse('上传失败')
-
-
 @Filters.allow_CDR
 def test_for_front(requset):
     data = {}
@@ -38,6 +24,43 @@ def test_for_front(requset):
         , {'工单状态': '部门回退', '数量': 2, '数量2': 200}]
     data['dimensions'] = dimensions
     data['source'] = source
+    respond = JsonResponse(data, safe=False)
+    return respond
+
+
+@Filters.allow_CDR
+def test_for_classify(request):
+    if request.method == 'POST':
+        appeallor = request.POST.get('iphone_id')
+        field_name = request.POST.get('table_name')
+    else:
+        appeallor = request.GET.get('iphone_id')
+        field_name = request.GET.get('table_name')
+    print(appeallor, field_name)
+    data = {'一级分类': [{'name': '城市建设类', 'value': 914}, {'name': '科教文卫类', 'value': 555}],
+            '二级分类': [{'name': '城市建设类', 'value': 329}, {'name': '科教文卫类', 'value': 555}],
+            '三级分类': [{'name': '城市建设类', 'value': 666}, {'name': '科教文卫类', 'value': 555}],
+            '四级分类': [{'name': '城市建设类', 'value': 222}, {'name': '科教文卫类', 'value': 555}],
+            '五级分类': [{'name': '城市建设类', 'value': 333}, {'name': '科教文卫类', 'value': 555}]}
+    respond = JsonResponse(data, safe=False)
+    return respond
+
+
+@Filters.allow_CDR
+def test_for_upload(request):
+    if request.method == 'POST':
+        file = request.POST.get('file')
+        field_name = request.POST.get('city')
+    else:
+        file = request.GET.get('file')
+        field_name = request.GET.get('city')
+
+    print(file, field_name)
+    data = {'一级分类': [{'name': '城市建设类', 'value': 914}, {'name': '科教文卫类', 'value': 555}],
+            '二级分类': [{'name': '城市建设类', 'value': 329}, {'name': '科教文卫类', 'value': 555}],
+            '三级分类': [{'name': '城市建设类', 'value': 666}, {'name': '科教文卫类', 'value': 555}],
+            '四级分类': [{'name': '城市建设类', 'value': 222}, {'name': '科教文卫类', 'value': 555}],
+            '五级分类': [{'name': '城市建设类', 'value': 333}, {'name': '科教文卫类', 'value': 555}]}
     respond = JsonResponse(data, safe=False)
     return respond
 

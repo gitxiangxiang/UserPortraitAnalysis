@@ -14,18 +14,26 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .service import TestService
-from .views import test_view
+from .views import test_view, persistent_appeal_view, personal_appeal_view
 
 app_name = "user_profiles"
 urlpatterns = [
-    path('tests/', test_view.StationListView.as_view()),
-    path('test_for_front/', test_view.test_for_front),
+    # 各级分类
+    path('label_gjflH/', personal_appeal_view.each_classification),
+    # 工单信息
+    path('order_info/', personal_appeal_view.order_info),
+    # 时间规律
+    path('time_trend/', personal_appeal_view.time_appeal),
+    # 主页
     path('', test_view.index, name='index'),
-    path('charts/', test_view.charts),
-    path('save/', test_view.save_excel),
-    path('test/', TestService.TestPersonalAppealDao.test_gdocf2),
-    path('test/<str:field_name>/', TestService.TestPersonalAppealDao.test_gdocf)
+    # 词云图
+    path('word_cloud/', personal_appeal_view.word_cloud),
+    # 存储Excel
+    path('persistent_excel/', persistent_appeal_view.do_persistent),
+    # 上传Excel
+    path('upload_excel/', persistent_appeal_view.upload_excel),
+    # 测试
+    path('test/', test_view.test_for_front)
 
 ]
 

@@ -1,3 +1,5 @@
+from mongoengine import Q
+
 from user_profiles.models.PersonalAppeal import PersonalAppeal
 from python.readdata import read
 from user_profiles.util.AdapterForReadingExcel import AdapterForReadingExcel
@@ -18,10 +20,12 @@ class PersonalAppealDao:
             dic['appeallor_id'] = appeallor.id
             PersonalAppeal(**dic).save()
 
-    # 这个方法暂时还不能用，没有筛选特定诉求人的诉求
     @staticmethod
-    def get_dist_cert_field(field_name):
-        personal_appeals = PersonalAppeal.objects.all()
+    def get_dist_cert_field(appeallor, field_name):
+        appe = AppeallorDao.get_appeallor_by_name(appeallor)
+        if appe is None:
+            return {}
+        personal_appeals = PersonalAppeal.objects(appeallor_id=appe.id)
         field = AdapterForReadingExcel.personal_field[field_name]
         dic_field = {}
         for personal_appeal in personal_appeals:
@@ -30,3 +34,13 @@ class PersonalAppealDao:
             else:
                 dic_field[personal_appeal[field]] = 1
         return dic_field
+
+    @staticmethod
+    def get_by_time_range(appeallor, start_time, end_time):
+        appe = AppeallorDao.get_appeallor_by_name(appeallor)
+        if appe is None:
+            return []
+        personal_appeal = PersonalAppeal.objects(Q(appeallor_id=appe.id)
+                                                 & Q(raise_time__gte=start_time) & Q(
+            raise_time__lte=end_time)).order_by('raise_time')
+        return personal_appeal

@@ -29,8 +29,10 @@ class TestPersonalAppealDao:
         :return:
         """
         if request.method == 'POST':
+            appeallor = request.POST.get('appeallor')
             field_name = request.POST.get('field')
         else:
+            appeallor = request.GET.get('appeallor')
             field_name = request.GET.get('field')
-        print(PersonalAppealDao.PersonalAppealDao.get_dist_cert_field(field_name))
-        return HttpResponse(PersonalAppealDao.PersonalAppealDao.get_dist_cert_field(field_name).__str__())
+        print(PersonalAppealDao.PersonalAppealDao.get_dist_cert_field(appeallor, field_name))
+        return HttpResponse(PersonalAppealDao.PersonalAppealDao.get_dist_cert_field(appeallor, field_name).__str__())
